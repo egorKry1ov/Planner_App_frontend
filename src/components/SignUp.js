@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom'
 
-function SignUp({setUserSignedIn, setAccessToken}) {
+function SignUp() {
 
     const navigate = useNavigate()
-    const signUpEndpoint = 'mock_signup'
+    const signUpEndpoint = 'api/users/'
 
-    const [formInfo, setFromInfo] = useState({email:'', password:''})
+    const [formInfo, setFromInfo] = useState({email:'', username:'', password:''})
     const [networkErrMsg, setNetworkErrMsg] = useState(null)
     const [clientErrMsg, setClientErrMsg] = useState(null)
 
@@ -62,17 +62,8 @@ function SignUp({setUserSignedIn, setAccessToken}) {
                 if (!data) {
                     console.log(`problem with network request: ${networkErrMsg}`)
                 } else {
-                    
-                    console.log(data)
-                    
-                    setUserSignedIn(data.access)
-
-                    // add tokens to localstorage here
-                    localStorage.setItem('access_token', data.email)
-                    localStorage.setItem('user', formInfo.email)
-                    localStorage.setItem('refresh_token', data.refresh)
-                    // redirect here
-                    // navigate.push('/')
+                    alert("sign in")
+                    navigate('/login')
                 }
             })
     }
@@ -83,6 +74,8 @@ function SignUp({setUserSignedIn, setAccessToken}) {
         <form onSubmit={handleLogin}>
             <label>email:</label>
             <input id="email" name="email" type="text" onChange={handleChange}/>
+            <label>username:</label>
+            <input id="username" name="username" type="text" onChange={handleChange}/>
             <label>password:</label>
             <input id="password" name="username" type="text" onChange={handleChange}/>
             <button type="submit">Login</button>

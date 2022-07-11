@@ -5,9 +5,12 @@ import axiosInstance from '../utils/axios-utils'
 
 function ListClients({userSignedIn, accessToken}) {
     
-    const clientRestEndpoint = 'clients'
+    const clientRestEndpoint = 'clients/'
+    const clientRestEndpoint2 = 'api/users/'
 
     const [clients, setClients] = useState([])
+    const [user, setUser] = useState([])
+
 
     useEffect(() => {
       getClients()
@@ -16,24 +19,36 @@ function ListClients({userSignedIn, accessToken}) {
     const getClients = () => {
         axiosInstance.get(clientRestEndpoint)
         .then(res => {
-          console.log(res.data)
           setClients(res.data)
         })
     }
 
-  const loaded = () => {
+    useEffect(() => {
+      getUsers()
+    }, [])  
+    
+    const getUsers = () => {
+        axiosInstance.get(clientRestEndpoint2)
+        .then(res => {
+          setUser(res.data)
+        })
+    }
 
+  const loaded = () => {
+    // const clients_from_user = users.clients
+    console.log(user)
     return (
     <div>
-        <h3>Clients Timeline</h3>
+        <h3>Clients</h3>
         <ul>
+          {/* <li>{user.clients}</li> */}
         {
-          clients.map((item,ind) => {
+          clients.map((item,ind) => { 
             return (<li key={ind}>{item.name}</li>)
           })
         }
         </ul>
-        <NewClient getClients={getClients} accessToken={accessToken}/>
+        <NewClient getClients={getClients} accessToken={accessToken} userSignedIn={userSignedIn}/>
     </div>
     );
   }

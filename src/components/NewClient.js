@@ -6,10 +6,8 @@ import axiosInstance from '../utils/axios-utils';
 function NewClient({getClients}) {
   const initialState = {
     name:'',
-    user_string:'generic_user',
   }
   const navigate = useNavigate();
-
 
   const [formInfo, setFormInfo] = useState(initialState)
     
@@ -23,12 +21,11 @@ function NewClient({getClients}) {
 
           setFormInfo(initialState)
           getClients()
-          //after we POST we want to GET the list back
           console.log(res.data)
         })
         .catch(err => {
           console.log(err)
-          navigate.push('/logout')
+          navigate('/')
         })
     }
 
@@ -41,7 +38,6 @@ function NewClient({getClients}) {
         <div>
             <form onSubmit={handleSubmit}>
                 <input value={formInfo.name} id="name" type="text" onChange={handleChange}/>
-                {/* <input id="user_string" type="hidden" /> */}
                 <button type="submit">Add a Client</button>
             </form>
         </div>
