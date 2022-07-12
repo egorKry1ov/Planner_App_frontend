@@ -36,7 +36,6 @@ function ListClients({userSignedIn, accessToken}) {
 
   const loaded = () => {
     // const clients_from_user = users.clients
-    console.log(user)
     return (
     <div>
         <h3>Clients</h3>
