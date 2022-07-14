@@ -41,7 +41,20 @@ function Planner() {
     const getEvents = () => {
         axiosInstance.get(eventsRestEndpoint)
         .then(res => {
-          setAllEvents(res.data)
+          console.log(res.data)
+          let newArray = []
+          res.data.forEach(myData => {
+            let new_data = {
+              title: myData.title,
+              start: new Date(myData.start),
+              end: new Date(myData.end),
+              id: myData.id,
+              user: myData.user,
+            } 
+          newArray.push(new_data) 
+          })
+          setAllEvents(newArray)
+          console.log(newArray)
         })
     }
     
@@ -51,7 +64,8 @@ function Planner() {
         axiosInstance
         .post(eventsRestEndpoint, newEvent)
         .then(res => {
-            setAllEvents([...allEvents, newEvent])
+            setNewEvent(initialState)
+            window.location.reload()
             console.log(res.data)
           })
           .catch(err => {
@@ -63,27 +77,42 @@ function Planner() {
     console.log(newEvent)
     
     return(
-        <div>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col">
+              <input type="text" placeholder="Add Title" style={{ }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+                <DatePicker 
+                dateFormat="yyyy-MM-dd h:mm aa" 
+                timeFormat="HH:mm" 
+                timeIntervals={30} 
+                showTimeSelect 
+                placeholderText="Start Date" 
+                style={{ marginRight: "10px" }} 
+                selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
+                <DatePicker 
+                dateFormat="yyyy-MM-dd h:mm aa" 
+                timeFormat="HH:mm" 
+                timeIntervals={30} 
+                showTimeSelect 
+                placeholderText="End Date" 
+                selected={newEvent.end} 
+                onChange={(end) => setNewEvent({ ...newEvent, end})} />
+                <button className=" btn btn-primary" stlye={{ marginTop: "10px" }} onClick={handleSubmit}>
+                   Add Event
+                </button>
+            </div>
 
-            <h1>Calendar</h1>
-                    <h2>Add New Event</h2>
-                    <div>
-                        <input type="text" placeholder="Add Title" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-                        <DatePicker dateFormat="yyyy-MM-dd" placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start: new Date(Date.parse(start)) })} />
-                        <DatePicker dateFormat="yyyy-MM-dd" placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end: new Date(Date.parse(end))})} />
-                        <button stlye={{ marginTop: "10px" }} onClick={handleSubmit}>
-                            Add Event
-                        </button>
-                    </div>
-              <Calendar
-              localizer={localizer}
-              events={allEvents}
-              startAccessor="start"
-              endAccessor="end"
-              style={{ height: 600, margin: "50px" }}
-              />
-
+        <div className="col">
+          <Calendar
+          localizer={localizer}
+          events={allEvents}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: '100vh', width:'160vh', }}/>
+      
         </div>
+      </div>
+    </div>
     )
 
 }

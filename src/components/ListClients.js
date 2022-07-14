@@ -6,11 +6,8 @@ import axiosInstance from '../utils/axios-utils'
 function ListClients({userSignedIn, accessToken}) {
     
     const clientRestEndpoint = 'clients/'
-    const clientRestEndpoint2 = 'api/users/'
-
+    
     const [clients, setClients] = useState([])
-    const [user, setUser] = useState([])
-
 
     useEffect(() => {
       getClients()
@@ -20,30 +17,37 @@ function ListClients({userSignedIn, accessToken}) {
         axiosInstance.get(clientRestEndpoint)
         .then(res => {
           setClients(res.data)
+          console.log(res.data)
         })
     }
 
-    useEffect(() => {
-      getUsers()
-    }, [])  
-    
-    const getUsers = () => {
-        axiosInstance.get(clientRestEndpoint2)
-        .then(res => {
-          setUser(res.data)
-        })
+    const handleDelete = (id) => {
+      axiosInstance.delete(`clients/${id}`)
+      .then(res => {
+        console.log(res)
+        getClients()
+      })
     }
+
+    const handleUpdate = (id, val) => {
+      axiosInstance.patch(`clients/${id}`, {name: val})
+      .then(res => {
+        console.log(res)
+        getClients()
+      })
+    }
+
 
   const loaded = () => {
-    // const clients_from_user = users.clients
     return (
     <div>
         <h3>Clients</h3>
         <ul>
-          {/* <li>{user.clients}</li> */}
         {
           clients.map((item,ind) => { 
-            return (<li key={ind}>{item.name}</li>)
+            return (<p key={ind}>{item.name} 
+            <button onClick={() =>handleDelete(item.id)}>-</button>
+            <button onClick={() =>handleUpdate(item.id, `${item.name}aa`)}>+</button></p>)
           })
         }
         </ul>

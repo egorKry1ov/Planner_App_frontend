@@ -2,3 +2,13 @@
 .App {
 	text-align: center;
 }
+
+.links a {
+	color: white;
+	text-decoration: none;
+}
+
+.home-page {
+	margin-top: 20px;
+	margin-right: 30px;
+}
