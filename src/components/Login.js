@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 
 function Login({setUserSignedIn, setAccessToken}) {
 
@@ -91,9 +91,10 @@ function Login({setUserSignedIn, setAccessToken}) {
             <label>email:</label>
             <input id="email" name="email" type="text" onChange={handleChange}/>
             <label>password:</label>
-            <input id="password" name="username" type="text" onChange={handleChange}/>
+            <input id="password" name="username" type="password" onChange={handleChange}/>
             <button type="submit">Login</button>
         </form>
+        <button><Link to="/signup">Register</Link></button>
         <p>{networkErrMsg}</p>
         <p>{clientErrMsg}</p>
     </div>
