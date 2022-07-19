@@ -8,7 +8,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axiosInstance from '../utils/axios-utils';
-import '../App.css'
+import './Planner.css'
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -27,6 +27,8 @@ function Planner() {
   const clientRestEndpoint = 'clients/'
     
     const [clients, setClients] = useState([])
+    const [isUpdate, setIsUpdated] = useState(false)
+    const [userId, setUserId] = useState()
 
     useEffect(() => {
       getClients()
@@ -44,6 +46,7 @@ function Planner() {
 
   const initialState = {
       title: "",
+      
       start: '',
       end: '',
     }
@@ -86,49 +89,60 @@ function Planner() {
       })
   }
 
-  const handleSelectEvent = (id) => {
-  
-    console.log(id)
-    axiosInstance
-        .patch(`events/${id}`, newEvent)
-        .then(res => {
-            setNewEvent(initialState)
-          })
-          .catch(err => {
-            console.log(err)
-          })
-      
+  const handleSelectEvent = (event) => {
+    setIsUpdated(true)
+    setUserId(event.id)
+    setNewEvent({...event, title: event.title, start: event.start, end: event.end})
   }
-    
-      const handleSubmit = (e) => {
-        e.preventDefault()
-    
-        axiosInstance
-        .post(eventsRestEndpoint, newEvent)
-        .then(res => {
-            setNewEvent(initialState)
-            window.location.reload()
-          })
-          .catch(err => {
-            console.log(err)
-          })
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (isUpdate) {
+
+      axiosInstance
+      .patch(`events/${userId}`, newEvent)
+      .then(res => {
+        window.location.reload()
+        })
+        .catch(err => {
+          console.log(err)
+          getEvents()
+        })
+    } else {
+      axiosInstance
+      .post(eventsRestEndpoint, newEvent)
+      .then(res => {
+          setNewEvent(initialState)
+          window.location.reload()
+        })
+        .catch(err => {
+          console.log(err)
+        })
+
+    }
       }
+
+    const cancelSubmit = () => {
+      setNewEvent(initialState)
+    }
+
+    console.log(allEvents)
         
     return(
-        <div className="container-fluid">
+        <div style={{marginTop: "100px"}} className="container-fluid">
           <div className="row">
-            <div className="col">
-              <h3>Add Event</h3>
+            <div className="col body-form">
               <div className="dropdown">
                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropupCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">Clients</button>
                 <ul className="dropdown-menu" aria-labelledby="dropupCenterBtn">
                 {
                   clients.map((item,ind) => { 
-                    return (<li className="dropdown-item" key={ind}>{item.name} </li>)
+                    return (<button onClick={ () => setNewEvent({ ...newEvent, title: item.title })} className="dropdown-item" key={ind}>{item.title}</button>)
                   })
                 }
                 </ul>
               </div>
+              <div className="txt_field">
               <input type="text" placeholder="Add Title" style={{ }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
                 <DatePicker 
                 dateFormat="yyyy-MM-dd" 
@@ -146,12 +160,15 @@ function Planner() {
                 placeholderText="End Date" 
                 selected={newEvent.end}
                 onChange={(end) => setNewEvent({ ...newEvent, end})} />
+
+              </div>
                 <button className=" btn btn-primary" stlye={{ marginTop: "10px" }} onClick={handleSubmit}>
-                   Add Event
-                </button>
-                <button className=" btn btn-primary" stlye={{ marginTop: "10px", marginLeft: "10px" }} onClick={handleSelectEvent}>
                    Update
                 </button>
+                <button className=" btn btn-primary" stlye={{ marginTop: "10px", marginLeft: "10px" }} onClick={cancelSubmit}>
+                   Cancel
+                </button>
+
             </div>
 
         <div className="col">
@@ -164,6 +181,7 @@ function Planner() {
           defaultView={Views.WEEK}
           startAccessor="start"
           endAccessor="end"
+          showMultiDayTimes
           style={{ height: '90vh', width:'140vh', }}/>
       
         </div>

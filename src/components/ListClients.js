@@ -45,9 +45,9 @@ function ListClients({userSignedIn, accessToken}) {
         <ul>
         {
           clients.map((item,ind) => { 
-            return (<p key={ind}>{item.name} 
+            return (<p key={ind}>{item.title} 
             <button onClick={() =>handleDelete(item.id)}>-</button>
-            <button onClick={() =>handleUpdate(item.id, `${item.name}aa`)}>+</button></p>)
+            <button className='btn btn-secondary' onClick={() =>handleUpdate(item.id, `${item.title}aa`)}>+</button></p>)
           })
         }
         </ul>

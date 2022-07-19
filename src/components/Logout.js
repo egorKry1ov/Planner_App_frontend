@@ -10,7 +10,7 @@ function LogOut({userSignedIn, setUserSignedIn, setAccessToken}) {
         setAccessToken(null)
     }, [])
   return (
-    <div>successfully signed out of <em>{userName}</em></div>
+    <h3>Successfully signed out<em>{userName}</em></h3>
   )
 }
 

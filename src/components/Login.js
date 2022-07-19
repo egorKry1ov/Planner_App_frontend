@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import {useNavigate, Link} from 'react-router-dom'
+import './Form.css'
 
 function Login({setUserSignedIn, setAccessToken}) {
-
+   
     const navigate = useNavigate()
-    
     const loginEndpoint = 'api/token/'
 
     const [formInfo, setFromInfo] = useState({email:'', password:''})
@@ -31,8 +31,6 @@ function Login({setUserSignedIn, setAccessToken}) {
     }
   
     const handleLogin = (e) => {
-        
-        // console.log(formInfo)
         e.preventDefault()
 
         setNetworkErrMsg(null)
@@ -64,20 +62,11 @@ function Login({setUserSignedIn, setAccessToken}) {
                 if (!data) {
                     console.log(`problem with network request: ${networkErrMsg}`)
                 } else {
-                    
-                    console.log(data)
-
-                    // setUserSignedIn(data.email)
                     setUserSignedIn(formInfo.email)
-
-                    // add tokens to localstorage here
                     setAccessToken(data.access)
-
                     localStorage.setItem('access_token', data.access)
                     localStorage.setItem('user', formInfo.email)
                     localStorage.setItem('refresh_token', data.refresh)
-                    // redirect here
-                    
                     navigate('/')
                     
                 }
@@ -85,18 +74,27 @@ function Login({setUserSignedIn, setAccessToken}) {
     }
 
     return (
-    <div>
-      <h3>Login</h3>
-        <form onSubmit={handleLogin}>
-            <label>email:</label>
-            <input id="email" name="email" type="text" onChange={handleChange}/>
-            <label>password:</label>
-            <input id="password" name="username" type="password" onChange={handleChange}/>
-            <button type="submit">Login</button>
-        </form>
-        <button><Link to="/signup">Register</Link></button>
-        <p>{networkErrMsg}</p>
-        <p>{clientErrMsg}</p>
+    <div style={{backgroundColor:'rgb(221, 247, 238)'}} className='body'>
+        <div className='center'>
+            <i class="bi bi-person-circle fa-3x"></i>
+                <form  onSubmit={handleLogin}>
+                    <div className='txt_field'>
+                        <input id="email" name="email" type="text" onChange={handleChange} required/>
+                        <span></span>
+                        <label>Email</label>
+                    </div>
+                    <div className='txt_field'>
+                        <input id="password" name="username" type="password" onChange={handleChange} required/>
+                        <span></span>
+                        <label>Password</label>
+                    </div>
+                        <input type="submit" Value="Login"></input>
+                        <div className='signup_link'>Not a member? <Link to="/signup">Register</Link></div>
+                </form>
+                <p>{networkErrMsg}</p>
+                <p>{clientErrMsg}</p>
+
+        </div>
     </div>
     );
 }

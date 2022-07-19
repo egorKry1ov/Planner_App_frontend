@@ -1,4 +1,4 @@
-import { Routes, Route, Link} from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import React, { useState } from "react";
 import ListClients from './components/ListClients'
 import SignUp from './components/SignUp'
@@ -7,36 +7,19 @@ import LogOut from './components/Logout';
 import Planner from './components/Planner';
 import ProtectedRoute from './routes/ProtectedRoute'
 import Profile from './components/Profile';
+import Navbar from './routes/Navbar';
 import './App.css'
 
 
 function App() {
   
-
   const [userSignedIn, setUserSignedIn] = useState(localStorage.getItem('user'))
   
   const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'))
   
   return (
     <div>
-
-    <nav className='navbar navbar-expand-lg bg-dark'>
-      <div className='container-fluid links'>
-        <div className="navbar-brand"><Link to="/profile">
-          {userSignedIn ? (
-              <span>{userSignedIn}</span>
-            ) : null
-          }
-        </Link>
-        </div>
-
-          <ul className='nav nav-pills nav-fill'>
-            <li className='nav-link '><Link to="/">Home </Link></li>
-            <li className='nav-link '><Link to="/clients">Clients </Link></li>
-            <li className='nav-link'><Link to="/logout"> Logout</Link></li>
-          </ul>
-      </div>
-    </nav>
+      <Navbar userSignedIn={userSignedIn}/>
     <div className='home-page'>   
             
       <Routes>

@@ -5,7 +5,7 @@ import axiosInstance from '../utils/axios-utils';
 
 function NewClient({getClients}) {
   const initialState = {
-    name:'',
+    title:'',
   }
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ function NewClient({getClients}) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input value={formInfo.name} id="name" type="text" onChange={handleChange}/>
+                <input value={formInfo.title} id="title" type="text" onChange={handleChange}/>
                 <button type="submit">Add a Client</button>
             </form>
         </div>
