@@ -25,9 +25,9 @@ function App() {
       <Routes>
           
         <Route  exact path="/" element={
-          <ProtectedRoute userSignedIn={userSignedIn}>
-            <Planner userSignedIn={setUserSignedIn} accessToken={accessToken}/>
-          </ProtectedRoute>}/>
+          // <ProtectedRoute userSignedIn={userSignedIn}>
+          <Planner userSignedIn={setUserSignedIn} accessToken={accessToken}/>}/>
+           {/* </ProtectedRoute>}/> */}
         <Route  exact path="/clients" element={
         <ProtectedRoute userSignedIn={userSignedIn}><ListClients userSignedIn={setUserSignedIn} accessToken={accessToken}/></ProtectedRoute>}/>
         <Route exact path="profile" element={<Profile userSignedIn={userSignedIn}/>}/>
