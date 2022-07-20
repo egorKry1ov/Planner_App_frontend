@@ -9,12 +9,12 @@ function Navbar({userSignedIn}) {
   return (
     <div >
     <nav className="navbar bg-light fixed-top bg-dark">
-              {/* <div className=' navbar-text'>Planner</div> */}
     <div  className="container-fluid">
-        <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-        <span ><i className="bi bi bi-list fa-lg icon-color"></i></span>
-        </button>
-        <div className="offcanvas offcanvas-start" tabIndex="1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+              <div className=' navbar-brand' style={{color: 'white'}}>Planner</div>
+        <div  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <i className="bi bi bi-list fa-lg icon-color" ></i>
+        </div>
+        <div className="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div  className="offcanvas-header">
             <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Account<div className="profile-email"><Link to="/profile">
           {userSignedIn ? (

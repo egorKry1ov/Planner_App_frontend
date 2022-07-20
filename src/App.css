@@ -9,7 +9,8 @@
 }
 
 .icon-color{
-	color: white
+	color: white;
+	margin-right: 20px
 }
 
 .profile-email a{
@@ -17,4 +18,8 @@
 	font-size: 15px;
 	color: rgb(119, 113, 113);
 
+}
+
+.s{
+	background: blue;
 }

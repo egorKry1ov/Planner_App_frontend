@@ -1,95 +1,305 @@
 
-
-
 .body-form{
-    margin: 0;
+    margin-left: 120px;
+    margin-right: 10px;
     padding: 0;
-    width: 400px;
-    background: rgb(238, 238, 243);
-    border-radius: 10px;
     
   }
 
-  .center form{
-    padding: 0 40px;
-    box-sizing: border-box;
-  }
+.float-parent-element { 
+  width: 100%; 
+} 
+.float-child-element { 
+  float: left; 
+  width: 20%; 
+} 
 
-  form .txt_field{
-    position: relative;
-    border-bottom: 2px solid rgb(115, 115, 132);
-    margin: 30px 0;
-  }
+.yellow { 
+  margin-left: 35%; 
+   
+}
 
-  .txt_field input{
-    width: 100%;
-    padding: 0 5px;
-    height: 40px;
-    font-size: 16px;
-    border: none;
+.g{
+  border: 1px solid black;
+}
+
+.react-calendar { 
+    width: 400px;
+    max-width: 100%;
+    background-color: white;
+    color: rgb(150, 132, 132);
+    border-radius: 8px;
+    /* box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); */
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.125em;
+   }
+   .react-calendar__navigation button {
+    color: #201e24;
+    min-width: 44px;
     background: none;
-    outline: none;
-  }
-
-  .txt_field label{
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    color: rgb(115, 115, 132);
-    transform: translateY(-50%);
     font-size: 16px;
-    pointer-events: none;
-    transition: .5s;
+    margin-top: 8px;
+   }
+   .react-calendar__navigation button:enabled:hover,
+   .react-calendar__navigation button:enabled:focus {
+    background-color: #4e4e5d;
+   }
+   .react-calendar__navigation button[disabled] {
+    background-color: #6f6969;
+   }
+   abbr[title] {
+    text-decoration: none;
+   }
+   .react-calendar__month-view__days__day--weekend {
+    color: #939090;
+   }
+   .react-calendar__tile:enabled:hover,
+   .react-calendar__tile:enabled:focus {
+    background: #33333d;
+    color: #bdbdbd;
+    border-radius: 6px;
+   }
+   .react-calendar__tile--now {
+    background: #e5f3ff;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #000000;
+   }
+   .react-calendar__tile--now:enabled:hover,
+   .react-calendar__tile--now:enabled:focus {
+    background: #3b18a333;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #a497d0;
+   }
+   .react-calendar__tile--hasActive:enabled:hover,
+   .react-calendar__tile--hasActive:enabled:focus {
+    background: #eeeefc;
+   }
+   .react-calendar__tile--active {
+    background: #c7b7fc;
+    border-radius: 6px;
+    font-weight: bold;
+    color: rgb(174, 164, 164);
+   }
+   .react-calendar__tile--active:enabled:hover,
+   .react-calendar__tile--active:enabled:focus {
+    background: #6f48eb;
+    color: white;
+   }
+   .react-calendar--selectRange .react-calendar__tile--hover {
+    background-color: #f8f8fa;
+   }
+   .react-calendar__tile--range {
+    background: #f8f8fa;
+    color: #6f48eb;
+    border-radius: 0;
+   }
+   .react-calendar__tile--rangeStart {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background: #6f48eb;
+    color: white;
+   }
+   .react-calendar__tile--rangeEnd {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background: #7050d9;
+    color: white;
+   }
 
-  }
+   .s{
+    background:red;
+   }
+
+   .edit-event {
+  
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;  
+    height: 40px;
+    width: 40px;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+      0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    background-color: #3a3e4a;
+    border-radius: 25px;
+  
+   }
+
+  .rbc-today {
+    background-color: #e5f3ff;
+}
+
+.sidenav {
+  margin-top: 50px;
+  height: 100%;
+  width: 87px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(29, 33, 35);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav span a{
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #e8ecf2;
+  display: block;
+}
+.sidenav span{
+  margin-top: 30px;
+  padding: 6px 8px 6px 1px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #e8ecf2;
+  display: block;
+  text-align: center;
+}
+
+.sidenav span i {
+  margin-right: 8px;
+}
+
+.sidenav span a:hover {
+  color: #f1f1f1;
+}
+
+
+.body{
+  /* margin: 0;
+  padding: 0; */
+  
+  background: rgb(207, 232, 250);
+  height: 30%;
+  width: 260px;
+  
+}
+
+.body i{
+  position: relative;
+  margin-top: 20px;
+  top: 20px;
+  left: 170px;
+}
+.center-class{
+ /* position: absolute; */
+ /* top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 400px;
+ background: white; */
+ border: 4px solid rgb(106, 108, 106);
+ border-radius: 10px;
+}
+
+.red { 
+  margin-left: 0; 
+  height: 0;
+  
+
+  /* opacity: 0; */
+} 
+/* .center h3{
+  margin-top: 20px;
+  text-align: center;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid silver;
+
+}
+.center form{
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid green;
+  margin: 30px 0;
+}
+
+.txt_field input{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.txt_field label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: rgb(109, 114, 112);
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: .5s;
+
+}
 
 .txt_field span::before{
-    content: '';
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: rgb(115, 115, 132);
-    transition: .5s;
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgb(83, 85, 83);
+  transition: .5s;
 }
 
 .txt_field input:focus ~ label,
 .txt_field input:valid ~ label{
-    top: -5px;
-    color: rgb(115, 115, 132);
+  top: -5px;
+  color: rgb(25, 26, 25);
 }
 
 .txt_field input:focus ~ span::before,
 .txt_field input:valid ~ span::before{
-    width: 100%
+  width: 100%
 }
 
 input[type="submit"]{
-    width:100%;
-    height: 50px;
-    border: 1px solid;
-    background: rgb(115, 115, 132);
-    border-radius: 25px;
-    font-size: 18px;
-    color: aliceblue;
-    font-weight: 700;
-    cursor: pointer;
-    outline: none;
+  width:100%;
+  height: 50px;
+  border: 1px solid;
+  background: rgb(126, 128, 126);
+  border-radius: 25px;
+  font-size: 18px;
+  color: rgb(238, 240, 238);
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
 }
 
 .signup_link{
-    margin: 30px 0;
-    text-align: center;
-    font-size: 16px;
-    color: black;
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: black;
 }
 
 .signup_link a{
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 .signup_link a:hover{
-    text-decoration: underline;
-}
-
+  text-decoration: underline;
+} */

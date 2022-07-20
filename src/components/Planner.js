@@ -4,10 +4,12 @@ import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Calendar, Views, dateFnsLocalizer } from "react-big-calendar";
+import SmallCalendar from "./SmallCalendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axiosInstance from '../utils/axios-utils';
+import SideBar from "../routes/SideBar";
 import './Planner.css'
 
 const locales = {
@@ -29,6 +31,8 @@ function Planner() {
     const [clients, setClients] = useState([])
     const [isUpdate, setIsUpdated] = useState(false)
     const [userId, setUserId] = useState()
+    const [date, setDate] = useState(new Date());
+    const [showResults, setShowResults] = useState(false)
 
     useEffect(() => {
       getClients()
@@ -46,7 +50,6 @@ function Planner() {
 
   const initialState = {
       title: "",
-      
       start: '',
       end: '',
     }
@@ -91,6 +94,7 @@ function Planner() {
 
   const handleSelectEvent = (event) => {
     setIsUpdated(true)
+    setShowResults(true)
     setUserId(event.id)
     setNewEvent({...event, title: event.title, start: event.start, end: event.end})
   }
@@ -129,10 +133,19 @@ function Planner() {
     console.log(allEvents)
         
     return(
-        <div style={{marginTop: "100px"}} className="container-fluid">
-          <div className="row">
-            <div className="col body-form">
-              <div className="dropdown">
+      <div className=" float-parent-element">
+        <div style={{marginTop: "100px"}} className="">
+          <div className="body-form">
+          <SideBar />
+          <div className='app float-child-element '>
+            <div className='calendar-container'>
+              <div className="hello "><SmallCalendar onChange={setDate} value={date} /></div>
+            </div>
+
+          <button className="edit-event" onClick={() => setShowResults(true)}>+</button>
+          {showResults ? 
+            <div className="red body center-class">
+                <div className="dropdown g">
                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropupCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">Clients</button>
                 <ul className="dropdown-menu" aria-labelledby="dropupCenterBtn">
                 {
@@ -142,7 +155,8 @@ function Planner() {
                 }
                 </ul>
               </div>
-              <div className="txt_field">
+             
+              <div className="txt_field ">
               <input type="text" placeholder="Add Title" style={{ }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
                 <DatePicker 
                 dateFormat="yyyy-MM-dd" 
@@ -165,15 +179,17 @@ function Planner() {
                 <button className=" btn btn-primary" stlye={{ marginTop: "10px" }} onClick={handleSubmit}>
                    Update
                 </button>
-                <button className=" btn btn-primary" stlye={{ marginTop: "10px", marginLeft: "10px" }} onClick={cancelSubmit}>
+                <button className=" btn btn-primary" stlye={{ marginTop: "10px", marginLeft: "10px" }} onClick={() => setShowResults(false)}>
                    Cancel
                 </button>
-
             </div>
+           : null}
+          </div>
 
-        <div className="col">
+        <div className="">
           <Calendar
           localizer={localizer}
+          className="float-child-element"
           events={allEvents}
           onSelectEvent={handleSelectEvent}
           onSelectSlot={handleSelectSlot}
@@ -182,11 +198,13 @@ function Planner() {
           startAccessor="start"
           endAccessor="end"
           showMultiDayTimes
-          style={{ height: '90vh', width:'140vh', }}/>
+          style={{ marginLeft: '20px', height: '90vh', width:'120vh', background: ''}}/>
       
         </div>
       </div>
     </div>
+
+      </div>
     )
 
 }

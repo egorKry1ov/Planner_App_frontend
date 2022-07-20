@@ -1,12 +1,12 @@
 /* html{
-  background-color: rgb(221, 250, 239);
+  background-color: rgb(76, 89, 110);
 
 } */
 
 .body{
     margin: 0;
     padding: 0;
-    background: rgb(221, 247, 238);
+    background: rgb(207, 232, 250);
     min-height: 100vh;
   }
 
