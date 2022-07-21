@@ -260,6 +260,20 @@ hr {
 
 }
 
+.rbc-event, .rbc-day-slot .rbc-background-event {
+  border: none;
+  box-sizing: border-box;
+  box-shadow: none;
+  margin: 0;
+  padding: 2px 5px;
+  background-color: #96999c;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
 /* .center h3{
   margin-top: 20px;
   text-align: center;

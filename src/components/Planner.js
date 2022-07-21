@@ -197,6 +197,7 @@ function Planner() {
           defaultView={Views.WEEK}
           startAccessor="start"
           endAccessor="end"
+          
           showMultiDayTimes
           style={{ marginLeft: '20px', height: '90vh', width:'120vh', background: ''}}/>
       
