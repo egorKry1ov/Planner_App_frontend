@@ -144,18 +144,10 @@ function Planner() {
 
           <button className="edit-event" onClick={() => setShowResults(true)}>+</button>
           {showResults ? 
-            <div className="red body center-class">
-                <div className="dropdown g">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropupCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">Clients</button>
-                <ul className="dropdown-menu" aria-labelledby="dropupCenterBtn">
-                {
-                  clients.map((item,ind) => { 
-                    return (<button onClick={ () => setNewEvent({ ...newEvent, title: item.title })} className="dropdown-item" key={ind}>{item.title}</button>)
-                  })
-                }
-                </ul>
-              </div>
-             
+            <div className="red center-class">
+              <span className="close-button bi bi-x fa-lg" stlye={{ marginTop: "10px", marginLeft: "10px" }} onClick={() => setShowResults(false)}>
+                   
+                </span>
               <div className="txt_field ">
               <input type="text" placeholder="Add Title" style={{ }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
                 <DatePicker 
@@ -176,12 +168,20 @@ function Planner() {
                 onChange={(end) => setNewEvent({ ...newEvent, end})} />
 
               </div>
-                <button className=" btn btn-primary" stlye={{ marginTop: "10px" }} onClick={handleSubmit}>
+                <div className="dropdown buttons">
+                <button className=" dropdown-toggle" type="button" id="dropupCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">Events</button>
+                <ul className="dropdown-menu" aria-labelledby="dropupCenterBtn">
+                {
+                  clients.map((item,ind) => { 
+                    return (<button onClick={ () => setNewEvent({ ...newEvent, title: item.title })} className="dropdown-item" key={ind}>{item.title}</button>)
+                  })
+                }
+                </ul>
+                <button className=" " stlye={{ marginTop: "10px" }} onClick={handleSubmit}>
                    Update
                 </button>
-                <button className=" btn btn-primary" stlye={{ marginTop: "10px", marginLeft: "10px" }} onClick={() => setShowResults(false)}>
-                   Cancel
-                </button>
+               
+              </div>
             </div>
            : null}
           </div>
