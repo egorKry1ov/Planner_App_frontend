@@ -10,11 +10,11 @@ function Navbar({userSignedIn}) {
     <div >
     <nav className="navbar bg-light fixed-top bg-dark">
     <div  className="container-fluid">
-              <div className=' navbar-brand' style={{color: 'white'}}>Planner</div>
+              <div ><Link className=' navbar-brand' style={{fontFamily: 'Sigmar One', color:'white', }} to="/calendar"><img style={{marginRight: '10px'}} src="https://img.icons8.com/arcade/31/FA5252/experimental-calendar-arcade.png"/>E-Planner</Link></div>
         <div  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <i className="bi bi bi-list fa-lg icon-color" ></i>
         </div>
-        <div className="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div  className="offcanvas-header">
             <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Account<div className="profile-email"><Link to="/profile">
           {userSignedIn ? (
@@ -28,24 +28,12 @@ function Navbar({userSignedIn}) {
         <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3 links">
             <li className="nav-item">
-            <li className='nav-link '><Link to="/">Home </Link></li>
+            <li className='nav-link '><Link to="/calendar">Calendar </Link></li>
             <li className='nav-link '><Link to="/profile">Profile </Link></li>
             </li>
             <li className="nav-item">
-            <li className='nav-link '><Link to="/clients">Clients </Link></li>
-            </li>
-            <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                More Options
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                <li><a className="dropdown-item" href="#">About</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li>
-                    <hr className="dropdown-divider"/>
-                </li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+            <li className='nav-link '><Link to="/clients">Events </Link></li>
+            <li className='nav-link '><Link to="/">About </Link></li>
             </li>
             <li className='nav-link'><Link to="/logout"> Logout</Link></li>
             </ul>

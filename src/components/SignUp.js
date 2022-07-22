@@ -73,7 +73,7 @@ function SignUp() {
     return (
     <div className='body'>
         <div className='center'>
-        <i class="bi bi-person-plus-fill fa-3x"></i>
+        <i className="bi bi-person-plus-fill fa-3x"></i>
                 <form onSubmit={handleLogin}>
                     <div className='txt_field'>
                         <input id="email" name="email" type="text" onChange={handleChange} required/>

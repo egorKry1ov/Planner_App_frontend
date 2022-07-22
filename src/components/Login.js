@@ -67,7 +67,7 @@ function Login({setUserSignedIn, setAccessToken}) {
                     localStorage.setItem('access_token', data.access)
                     localStorage.setItem('user', formInfo.email)
                     localStorage.setItem('refresh_token', data.refresh)
-                    navigate('/')
+                    navigate('/calendar')
                     
                 }
             })
@@ -76,7 +76,7 @@ function Login({setUserSignedIn, setAccessToken}) {
     return (
     <div style={{backgroundColor:'rgb(207, 232, 250)'}} className='body'>
         <div className='center'>
-            <i class="bi bi-person-circle fa-3x"></i>
+            <i className="bi bi-person-circle fa-3x"></i>
                 <form  onSubmit={handleLogin}>
                     <div className='txt_field'>
                         <input id="email" name="email" type="text" onChange={handleChange} required/>

@@ -126,20 +126,18 @@ function Planner() {
     }
       }
 
-    const cancelSubmit = () => {
-      setNewEvent(initialState)
-    }
-
-    console.log(allEvents)
-        
     return(
       <div className=" float-parent-element">
-        <div style={{marginTop: "100px"}} className="">
+        <div style={{marginTop: '70px', marginLeft: "100px"}}>
+          <h2>Calendar</h2>
+        <hr style={{marginBottom: '40px'}}/>
+        </div>
+        <div  className="">
           <div className="body-form">
           <SideBar />
-          <div className='app float-child-element '>
+          <div className='float-child-element '>
             <div className='calendar-container'>
-              <div className="hello "><SmallCalendar onChange={setDate} value={date} /></div>
+              <div className="hello "><SmallCalendar /></div>
             </div>
 
           <button className="edit-event" onClick={() => setShowResults(true)}>+</button>
@@ -151,7 +149,7 @@ function Planner() {
               <div className="txt_field ">
               <input type="text" placeholder="Add Title" style={{ }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
                 <DatePicker 
-                dateFormat="yyyy-MM-dd" 
+                dateFormat="yyyy-MM-dd hh:mm" 
                 timeFormat="HH:mm" 
                 timeIntervals={30} 
                 showTimeSelect 
@@ -159,7 +157,7 @@ function Planner() {
                 style={{ marginRight: "10px" }} 
                 selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
                 <DatePicker 
-                dateFormat="yyyy-MM-dd" 
+                dateFormat="yyyy-MM-dd hh:mm" 
                 timeFormat="HH:mm" 
                 timeIntervals={30} 
                 showTimeSelect 
@@ -169,7 +167,7 @@ function Planner() {
 
               </div>
                 <div className="dropdown buttons">
-                <button className=" dropdown-toggle" type="button" id="dropupCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">Events</button>
+                <button className=" dropdown-toggle events-button" type="button" id="dropupCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">Events</button>
                 <ul className="dropdown-menu" aria-labelledby="dropupCenterBtn">
                 {
                   clients.map((item,ind) => { 
@@ -177,8 +175,8 @@ function Planner() {
                   })
                 }
                 </ul>
-                <button className=" " stlye={{ marginTop: "10px" }} onClick={handleSubmit}>
-                   Update
+                <button className="save-button" stlye={{ marginTop: "10px" }} onClick={handleSubmit}>
+                   Save
                 </button>
                
               </div>
@@ -188,6 +186,9 @@ function Planner() {
 
         <div className="">
           <Calendar
+     
+          // onNavigate={date => <SmallCalendar onChange={setDate} value={date}/>}
+          // onNavigate={(a,b,c) => { console.log(a,b,c)}} 
           localizer={localizer}
           className="float-child-element"
           events={allEvents}
@@ -197,9 +198,8 @@ function Planner() {
           defaultView={Views.WEEK}
           startAccessor="start"
           endAccessor="end"
-          
           showMultiDayTimes
-          style={{ marginLeft: '20px', height: '90vh', width:'120vh', background: ''}}/>
+          style={{ marginLeft: '20px', height: '85vh', width:'75%', minWidth: '80vh'}}/>
       
         </div>
       </div>

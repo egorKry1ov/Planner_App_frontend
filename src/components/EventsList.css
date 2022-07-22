@@ -1,0 +1,48 @@
+.event-list{
+    margin: 70px 100px 100px 100px;
+
+}
+
+.send-button{
+    background-color: rgb(187, 188, 186);
+}
+
+.delete-button {
+    position: fixed;
+    right: 9%;
+}
+
+.event-name{
+    font-size: 20px;
+}
+
+.profile-container{
+    position:fixed;
+    left: 53%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 60%;
+    width: 50%;
+    background: #f2f2f2;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 8px #d0d0d0;
+    text-align: center;
+    font-size: 110%;
+    list-style-type: none;
+    margin-top: 30px;
+    
+}
+
+.profile-container li{
+    list-style-type: none;
+    margin-top: 15px;
+    margin-right: 29px;
+}
+
+.profile-container i {
+    margin-top: 100px
+}
+
+
+

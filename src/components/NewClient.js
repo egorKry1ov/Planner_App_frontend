@@ -2,6 +2,7 @@ import { useState } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../utils/axios-utils';
+import './EventsList.css'
 
 function NewClient({getClients}) {
   const initialState = {
@@ -37,8 +38,8 @@ function NewClient({getClients}) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input value={formInfo.title} id="title" type="text" onChange={handleChange}/>
-                <button type="submit">Add a Client</button>
+                <input value={formInfo.title} id="title" type="text" placeholder="New Event" onChange={handleChange}/>
+                <button className='bi bi-check-lg send-button' type="submit"></button>
             </form>
         </div>
   )

@@ -2,6 +2,8 @@ import React from 'react';
 import {useState, useEffect} from 'react'
 import NewClient from './NewClient';
 import axiosInstance from '../utils/axios-utils'
+import SideBar from '../routes/SideBar';
+import './EventsList.css'
 
 function ListClients({userSignedIn, accessToken}) {
     
@@ -28,31 +30,39 @@ function ListClients({userSignedIn, accessToken}) {
         getClients()
       })
     }
-
-    const handleUpdate = (id, val) => {
-      axiosInstance.patch(`clients/${id}`, {name: val})
-      .then(res => {
-        console.log(res)
-        getClients()
-      })
-    }
-
+    console.log(clients)
 
   const loaded = () => {
     return (
     <div>
-        <h3>Clients</h3>
-        <ul>
-        {
-          clients.map((item,ind) => { 
-            return (<p key={ind}>{item.title} 
-            <button onClick={() =>handleDelete(item.id)}>-</button>
-            <button className='btn btn-secondary' onClick={() =>handleUpdate(item.id, `${item.title}aa`)}>+</button></p>)
-          })
-        }
-        </ul>
-        <NewClient getClients={getClients} accessToken={accessToken} userSignedIn={userSignedIn}/>
-    </div>
+        <SideBar />
+        <div className='event-list'>
+
+          <h2 >Events</h2>
+          <hr style={{marginBottom: '40px'}}/>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> {
+            clients.map((item,ind) => { 
+              return (<p className='event-name' key={ind}>{item.title} 
+              <span className='bi bi-trash3 delete-button' onClick={() =>handleDelete(item.id)}></span><hr/></p>
+              )
+            })
+          }</td>
+              </tr>
+            </tbody>
+          </table>
+          <NewClient getClients={getClients} accessToken={accessToken} userSignedIn={userSignedIn}/>
+         
+        </div>
+
+        </div>
     );
   }
   return (
@@ -64,3 +74,7 @@ function ListClients({userSignedIn, accessToken}) {
 }
 
 export default ListClients;
+
+
+
+

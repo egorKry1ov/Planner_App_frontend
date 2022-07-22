@@ -9,6 +9,8 @@ import ProtectedRoute from './routes/ProtectedRoute'
 import Profile from './components/Profile';
 import Navbar from './routes/Navbar';
 import './App.css'
+import Footer from './routes/Footer';
+import About from './components/About';
 
 
 function App() {
@@ -19,21 +21,23 @@ function App() {
   
   return (
     <div>
+      {/* <Footer /> */}
       <Navbar userSignedIn={userSignedIn}/>
     <div className='home-page'>   
             
       <Routes>
           
-        <Route  exact path="/" element={
+        <Route exact path="/" element={<About />}/>
+        <Route  exact path="/calendar" element={
           <ProtectedRoute userSignedIn={userSignedIn}>
           <Planner userSignedIn={setUserSignedIn} accessToken={accessToken}/>
            </ProtectedRoute>}/>
         <Route  exact path="/clients" element={
         <ProtectedRoute userSignedIn={userSignedIn}><ListClients userSignedIn={setUserSignedIn} accessToken={accessToken}/></ProtectedRoute>}/>
-        <Route exact path="profile" element={<Profile userSignedIn={userSignedIn}/>}/>
-        <Route  exact path="/signup" element={<SignUp setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />}/>   
-        <Route   path="/login" element={<Login setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />}/>
-        <Route   path="/logout" element={<LogOut setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />}/>
+        <Route exact path="/profile" element={<Profile userSignedIn={userSignedIn}/>}/>
+        <Route exact path="/signup" element={<SignUp setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />}/>   
+        <Route path="/login" element={<Login setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />}/>
+        <Route path="/logout" element={<LogOut setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />}/>
 
       </Routes>
       
