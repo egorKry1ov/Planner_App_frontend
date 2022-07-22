@@ -6,6 +6,7 @@ Register your account and expole E-Planner, where you can schedrule events and m
 ![project4](https://user-images.githubusercontent.com/98567943/180490184-a86ab2ab-4d11-4905-a669-b679c1781abd.png)
 
 React app fetching data from django api https://github.com/egorKry1ov/Planner_App_backend
+Used react-big-calendar, react-calendar, date-picker, bootstrap, date-fns
 
 # Getting Started with Create React App
 
